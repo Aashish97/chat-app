@@ -13,10 +13,10 @@ const messageTemplate = document.querySelector('#message-template').innerHTML;
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
 
 socket.on('message', (message) => {
-    console.log(message);
     const html = Mustache.render(messageTemplate, {
-            message: message.text,
-            createdAt: moment(message.createdAt).format('h:mm a')
+        username: message.username,
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
         });
     $messages.insertAdjacentHTML('beforeend', html);
 });
